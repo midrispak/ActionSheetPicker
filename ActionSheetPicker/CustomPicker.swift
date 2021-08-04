@@ -28,7 +28,7 @@ class CustomPicker: NSObject {
     
     private var alertContentController = UIViewController()
     private lazy var pickerContentView: PickerContentView = {
-        PickerContentView(width: UIScreen.main.bounds.size.width - 16, barTintColor: .systemGray6, titleTextColor: .darkGray)
+        PickerContentView(width: UIScreen.main.bounds.size.width - 16, barTintColor: .systemGray5, titleTextColor: .darkGray)
     }()
     
     private var alertController: UIAlertController!
@@ -328,25 +328,25 @@ class CustomPickerCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        // setupView()
+         setupView()
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        setupView()
     }
     
     func setupView() {
         container = UIView(frame: .zero)
-        self.contentView.translatesAutoresizingMaskIntoConstraints = false
         container.translatesAutoresizingMaskIntoConstraints = false
         
+        self.contentView.addSubview(container)
         NSLayoutConstraint.activate([
-            container.topAnchor.constraint(equalTo: self.contentView.bottomAnchor),
+            container.topAnchor.constraint(equalTo: self.contentView.topAnchor),
             container.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
             container.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
             container.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
         ])
         
-        self.contentView.addSubview(contentView)
     }
 }
